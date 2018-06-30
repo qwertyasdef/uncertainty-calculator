@@ -2,7 +2,7 @@
 A program to do uncertainty propagation calculations. I made this for the Engineering Innovations program from Johns Hopkins University, because calculating uncertainty propagation by hand was too painful.
 
 ## Using the program
-Run uncertainty.py and enter a math expression. Exponentation is `**`, not `^`. Inexact values can be written as the value +- the uncertainty. Values without an uncertainty attatched are assumed to be exact. Press enter and the program will calculate the result with the appropriate uncertainty. For example:
+Run uncertainty.py and enter a math expression. Exponentation is `**`, not `^`. Numbers in scientific notation can be written with an uppercase or lowercase `e` between the number and the magnitude such as `2.17e5`. Inexact values can be written as the value +- the uncertainty. Values without an uncertainty attached are assumed to be exact. Press enter and the program will calculate the result with the appropriate uncertainty. For example:
 ```
 >>> (10.5 +- 0.2) * (1.24 +- 0.03) + 7.34 +- 0.06
 20.36 +- 0.623

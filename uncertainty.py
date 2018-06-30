@@ -59,10 +59,12 @@ class Measurement:
         return self.__str__()
 
 
+# Convert numbers to numbers with uncertainties
 def toMeasurement(a):
     return Measurement(getattr(a, "value", a), getattr(a, "uncertainty", 0))
 
 
+# Apply an arbitrary function
 def func(f, m):
     return Measurement(
         f(m.value),
@@ -73,6 +75,7 @@ def func(f, m):
     )
 
 
+# Trig functions in degrees
 def trig(f, a):
     g = lambda x: f(math.radians(x))
     try:
@@ -81,6 +84,7 @@ def trig(f, a):
         return g(a)
 
 
+# Inverse trig functions return degrees
 def invTrig(f, a):
     g = lambda x: math.degrees(f(x))
     try:
@@ -91,6 +95,7 @@ def invTrig(f, a):
 
 if __name__ == "__main__":
     import re
+    # Functions that shouldn't be overwritten
     default = {
         "Measurement": Measurement,
         "sqrt": lambda x: x**0.5,
@@ -104,23 +109,32 @@ if __name__ == "__main__":
         "math": math,
         "__builtins__": {},
     }
+    # Namespace for eval and exec
     namespace = default.copy()
+    # namespace["ans"] should always contain the result of the previous expression
     namespace["ans"] = None
     while True:
+        # Replace functions that may have been overwritten
         namespace.update(default)
+        # Get user input
         expr = input(">>> ")
-        split = re.split(r"(\d+\.?\d* *\+- *\d+\.?\d*)", expr)
-        for i, s in enumerate(split):
-            if "+-" in s:
-                v, u = re.split(r" *\+- *", s)
-                split[i] = "Measurement(" + v + ", " + u + ")"
-        joined = "".join(split)
+        # Replace a +- b with Measurement(a, b)
+        expr = re.sub(
+            r"(\d+\.?\d*([Ee]-?\d+)?) *\+- *(\d+\.?\d*([Ee]-?\d+)?)",
+            r"Measurement(\1, \3)",
+            expr
+        )
+        # Evaluate the expression
         try:
-            namespace["ans"] = eval(joined, namespace)
+            # Calculate the result, stor it in ans, and display it
+            namespace["ans"] = eval(expr, namespace)
             print(namespace["ans"])
         except:
+            # The expression was not an expression
             namespace["ans"] = None
             try:
-                exec(joined, namespace)
+                # Maybe it was a variable assignment
+                exec(expr, namespace)
             except Exception as e:
+                # Not valid, show error
                 print(e)
