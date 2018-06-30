@@ -9,6 +9,17 @@ Run uncertainty.py and enter a math expression. Inexact values can be written as
 ```
 The output will **not** automatically be rounded to the appropriate number of sig figs.
 
+You can also store intermediate values into variables.
+```
+>>> a = (10.5 +- 0.2) * (1.24 +- 0.03) + 7.34 +- 0.06
+>>> a
+20.36 +- 0.623
+>>> a / (1.25 +- 0.03)
+16.288 +- 0.889312
+```
+
+Python keywords and certain reserved names cannot be used as variable names. If typing the name and hitting enter results in something other than `name 'variable' is not defined` then that variable name cannot be used.
+
 ## Calculations
 Here are how the program calculates uncertainties for each operation. Inexact inputs are denoted by x and y, an exact input is represented by n, and the output is z. A variable preceded by Δ means the uncertainty of that variable.
 
@@ -38,9 +49,9 @@ The function `sqrt` is available, though it is the same as just raising its argu
 
 The basic trigonometric functions sin, cos, and tan are supported and take their input in degrees. Inverse trig functions are also available as asin, acos, and atan and return an angle in degrees. Other functions can also be used by doing
 ```
->>> (1.04 +- 0.02).func(yourfunction)
+>>> (1.04 +- 0.02).func(f)
 ```
-where `yourfunction` can be any function that takes one input. 
+where `f` can be any function that takes one input. The Python `math` library is accessible but must be used in this way.
 
 The uncertainties for these functions are calculated as follows:
 
