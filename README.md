@@ -20,6 +20,13 @@ You can also store intermediate values into variables.
 
 Python keywords and certain reserved names cannot be used as variable names. If typing the name and hitting enter results in something other than `name 'variable' is not defined` then that variable name cannot be used.
 
+Note that variables cannot be used as part of an inexact quantity. For example, this will not work:
+```
+>>> a = 2
+>>> b = a +- 9
+```
+A `+-` must have numbers on both sides.
+
 ## Calculations
 Here are how the program calculates uncertainties for each operation. Inexact inputs are denoted by x and y, an exact input is represented by n, and the output is z. A variable preceded by Δ means the uncertainty of that variable.
 
