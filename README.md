@@ -1,5 +1,5 @@
 # Uncertainty calculator
-A program to do uncertainty propagation calculations.
+A program to do uncertainty propagation calculations. I made this for the Engineering Innovations program from Johns Hopkins University, because calculating uncertainty propagation by hand was too painful.
 
 ## Using the program
 Run uncertainty.py and enter a math expression. Inexact values can be written as the value +- the uncertainty. Values without an uncertainty attatched are assumed to be exact. Press enter and the program will calculate the result with the appropriate uncertainty. For example:
