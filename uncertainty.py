@@ -56,7 +56,7 @@ def atan(a):
 
 
 if __name__ == "__main__":
-    funcs = {
+    default = {
         "Measurement": Measurement,
         "sqrt": sqrt,
         "sin": sin,
@@ -65,10 +65,11 @@ if __name__ == "__main__":
         "asin": asin,
         "acos": acos,
         "atan": atan,
+        "__builtins__": {},
     }
-    namespace = funcs.copy()
+    namespace = default.copy()
     while True:
-        namespace.update(funcs)
+        namespace.update(default)
         expr = input(">>> ")
         split = re.split(r"(\d+\.?\d* *\+- *\d+\.?\d*)", expr)
         for i, s in enumerate(split):
