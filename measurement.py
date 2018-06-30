@@ -27,7 +27,7 @@ class Measurement:
         other = toM(other)
         return Measurement(
             self.value * other.value,
-            (self.uncertainty / self.value + other.uncertainty / other.value) * self.value * other.value
+            (abs(self.uncertainty / self.value) + abs(other.uncertainty / other.value)) * self.value * other.value
         )
 
     def __rmul__(self, other):
@@ -37,7 +37,7 @@ class Measurement:
         other = toM(other)
         return Measurement(
             self.value / other.value,
-            (self.uncertainty / self.value + other.uncertainty / other.value) * self.value / other.value
+            (abs(self.uncertainty / self.value) + abs(other.uncertainty / other.value)) * self.value / other.value
         )
 
     def __rtruediv__(self, other):
