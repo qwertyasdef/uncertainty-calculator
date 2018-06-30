@@ -65,6 +65,7 @@ if __name__ == "__main__":
         "asin": asin,
         "acos": acos,
         "atan": atan,
+        "math": math,
         "__builtins__": {},
     }
     namespace = default.copy()
