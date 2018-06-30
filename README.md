@@ -64,7 +64,7 @@ The function `sqrt` is available, though it is the same as just raising its argu
 
 The basic trigonometric functions sin, cos, and tan are supported and take their input in degrees. Inverse trig functions are also available as asin, acos, and atan and return an angle in degrees. Other functions can also be used by doing
 ```
->>> (1.04 +- 0.02).func(f)
+>>> func(f, 1.04 +- 0.02)
 ```
 where `f` can be any function that takes one input. The Python `math` library is accessible but must be used in this way.
 
